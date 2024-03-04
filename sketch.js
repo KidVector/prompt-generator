@@ -39,11 +39,11 @@ let tertiary = "#D1D1D4";
 let HelDisBold, HelTxtMed, HelTxtBold;
 
 function preload() {
-  HelDisBold = loadFont("https://github.com/KidVector/prompt-generator/blob/97225a0a4b15d76e1563672188a85cd9480114b1/assets/HelveticaNowDisplay-Bold.ttf");
-  HelTxtMed = loadFont("https://github.com/KidVector/prompt-generator/blob/97225a0a4b15d76e1563672188a85cd9480114b1/assets/HelveticaNowText-Medium.ttf");
-  HelTxtBold = loadFont("https://github.com/KidVector/prompt-generator/blob/97225a0a4b15d76e1563672188a85cd9480114b1/assets/HelveticaNowText-Bold.ttf");
-  icon1 = loadImage("https://github.com/KidVector/prompt-generator/blob/97225a0a4b15d76e1563672188a85cd9480114b1/assets/icon-generate.png");
-  icon2 = loadImage("https://github.com/KidVector/prompt-generator/blob/97225a0a4b15d76e1563672188a85cd9480114b1/assets/icon-save.png");
+  HelDisBold = loadFont("https://github.com/KidVector/prompt-generator/raw/97225a0a4b15d76e1563672188a85cd9480114b1/assets/HelveticaNowDisplay-Bold.ttf");
+  HelTxtMed = loadFont("https://github.com/KidVector/prompt-generator/raw/97225a0a4b15d76e1563672188a85cd9480114b1/assets/HelveticaNowText-Medium.ttf");
+  HelTxtBold = loadFont("https://github.com/KidVector/prompt-generator/raw/97225a0a4b15d76e1563672188a85cd9480114b1/assets/HelveticaNowText-Bold.ttf");
+  icon1 = loadImage("https://github.com/KidVector/prompt-generator/raw/97225a0a4b15d76e1563672188a85cd9480114b1/assets/icon-generate.png");
+  icon2 = loadImage("https://github.com/KidVector/prompt-generator/raw/97225a0a4b15d76e1563672188a85cd9480114b1/assets/icon-save.png");
 }
 
 let randomAdjective, randomColour, randomNoun, randomVerb, randomLoc;
