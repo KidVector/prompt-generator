@@ -58,13 +58,27 @@ let lineOne,
 let cornerRadius = 20;
 let lineHeight = 94;
 let pg1;
-    
+
 function setup() {
   createCanvas(1100, 1100);
-  
-    // Define clickable pieces of text with different URLs
-  links.push(new TextLink('#MarchOfRobots2024', col1, 130, 'https://www.instagram.com/explore/tags/marchofrobots2024/'));
-  links.push(new TextLink('@kidvector', col2, 1030, 'https://www.instagram.com/kidvector'));
+
+  // Define clickable pieces of text with different URLs
+  links.push(
+    new TextLink(
+      "#MarchOfRobots2024",
+      col1,
+      130,
+      "https://www.instagram.com/explore/tags/marchofrobots2024/"
+    )
+  );
+  links.push(
+    new TextLink(
+      "@kidvector",
+      col2,
+      1030,
+      "https://www.instagram.com/kidvector"
+    )
+  );
 
   pg1 = createGraphics(width, height);
 
@@ -77,7 +91,7 @@ function setup() {
 
 function draw() {
   background(randomColour);
-  
+
   image(pg1, 0, 0);
   let blockRow1 = 180;
   let blockRow2 = 270;
@@ -86,8 +100,8 @@ function draw() {
   let k2 = 16;
   let k3 = 24;
   let k4 = 32;
-  
-   // Display and handle each clickable piece of text
+
+  // Display and handle each clickable piece of text
   for (let link of links) {
     link.display();
   }
@@ -159,6 +173,7 @@ function draw() {
     mouseY > buttonY &&
     mouseY < buttonY + buttonHeight
   ) {
+    cursor(HAND);
     fill(tertiary);
   } else {
     fill(primary);
@@ -182,6 +197,7 @@ function draw() {
     mouseY > buttonY &&
     mouseY < buttonY + buttonHeight
   ) {
+    cursor(HAND);
     fill(tertiary);
   } else {
     fill(primary);
@@ -239,9 +255,7 @@ function mousePressed() {
   }
 }
 
-
 function furniture() {
-
   pg1.push();
   pg1.textFont(HelTxtMed);
   pg1.textSize(18);
@@ -259,13 +273,12 @@ function furniture() {
   pg1.text(words[1], col2, row1);
   pg1.text(words[2], col4, row1);
   pg1.text(words[3], col5, row1);
-//  pg1.text(words[4], col1, row2);
+  //  pg1.text(words[4], col1, row2);
   pg1.text(words[5], col2, row2);
   pg1.text(words[7], col1, row4);
-//  pg1.text(words[8], col2, row4);
+  //  pg1.text(words[8], col2, row4);
   pg1.text(words[9], col5, row4);
   pg1.pop();
-
 }
 
 function mouseClicked() {
@@ -293,17 +306,16 @@ class TextLink {
       cursor(ARROW);
       fill(primary);
     }
-  
-  textFont(HelTxtMed);
-  textSize(18);
-//  textAlign(LEFT, TOP);
-  noStroke();
+
+    textFont(HelTxtMed);
+    textSize(18);
+    noStroke();
     text(this.message, this.x, this.y);
   }
 
   clicked() {
     if (this.isMouseInside()) {
-      window.open(this.url, '_blank');
+      window.open(this.url, "_blank");
     }
   }
 
@@ -312,8 +324,11 @@ class TextLink {
     const messageTop = this.y - textAscent();
     const messageBottom = this.y + textDescent();
 
-    return mouseX > this.x && mouseX < this.x + messageWidth &&
-      mouseY > messageTop && mouseY < messageBottom;
+    return (
+      mouseX > this.x &&
+      mouseX < this.x + messageWidth &&
+      mouseY > messageTop &&
+      mouseY < messageBottom
+    );
   }
 }
-
