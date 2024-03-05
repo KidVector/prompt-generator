@@ -268,6 +268,13 @@ function furniture() {
 
 }
 
+function mouseClicked() {
+  // Check if any of the clickable pieces of text were clicked
+  for (let link of links) {
+    link.clicked();
+  }
+}
+
 class TextLink {
   constructor(message, x, y, url) {
     this.message = message;
