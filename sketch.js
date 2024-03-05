@@ -1,3 +1,5 @@
+let links = [];
+
 // Furniture
 let col1 = 20;
 let col2 = 290;
@@ -39,11 +41,11 @@ let tertiary = "#D1D1D4";
 let HelDisBold, HelTxtMed, HelTxtBold;
 
 function preload() {
-  HelDisBold = loadFont("https://raw.githubusercontent.com/KidVector/prompt-generator/main/assets/HelveticaNowDisplay-Bold.ttf");
-  HelTxtMed = loadFont("https://raw.githubusercontent.com/KidVector/prompt-generator/main/assets/HelveticaNowText-Medium.ttf");
-  HelTxtBold = loadFont("https://raw.githubusercontent.com/KidVector/prompt-generator/main/assets/HelveticaNowText-Bold.ttf");
-  icon1 = loadImage("https://raw.githubusercontent.com/KidVector/prompt-generator/main/assets/icon-generate.png");
-  icon2 = loadImage("https://raw.githubusercontent.com/KidVector/prompt-generator/main/assets/icon-save.png");
+  HelDisBold = loadFont("assets/HelveticaNowDisplay-Bold.ttf");
+  HelTxtMed = loadFont("assets/HelveticaNowText-Medium.ttf");
+  HelTxtBold = loadFont("assets/HelveticaNowText-Bold.ttf");
+  icon1 = loadImage("assets/icon-save.png");
+  icon2 = loadImage("assets/icon-generate.png");
 }
 
 let randomAdjective, randomColour, randomNoun, randomVerb, randomLoc;
@@ -59,6 +61,10 @@ let pg1;
     
 function setup() {
   createCanvas(1100, 1100);
+  
+    // Define clickable pieces of text with different URLs
+  links.push(new TextLink('#MarchOfRobots2024', col1, 130, 'https://www.instagram.com/explore/tags/marchofrobots2024/'));
+  links.push(new TextLink('@kidvector', col2, 1030, 'https://www.instagram.com/kidvector'));
 
   pg1 = createGraphics(width, height);
 
@@ -80,6 +86,11 @@ function draw() {
   let k2 = 16;
   let k3 = 24;
   let k4 = 32;
+  
+   // Display and handle each clickable piece of text
+  for (let link of links) {
+    link.display();
+  }
 
   // Robot Icon
   fill(secondary);
@@ -215,7 +226,6 @@ function mousePressed() {
     mouseY > buttonY &&
     mouseY < buttonY + buttonHeight
   ) {
-    console.log("Generate Button clicked!");
     generatePrompt();
   }
   if (
@@ -225,7 +235,7 @@ function mousePressed() {
     mouseY < buttonY + buttonHeight
   ) {
     console.log("Save Button clicked!");
-    saveCanvas("prompt_sketch", "png");
+    saveCanvas("marchofrobots2024-prompt", "png");
   }
 }
 
@@ -249,11 +259,54 @@ function furniture() {
   pg1.text(words[1], col2, row1);
   pg1.text(words[2], col4, row1);
   pg1.text(words[3], col5, row1);
-  pg1.text(words[4], col1, row2);
+//  pg1.text(words[4], col1, row2);
   pg1.text(words[5], col2, row2);
   pg1.text(words[7], col1, row4);
-  pg1.text(words[8], col2, row4);
+//  pg1.text(words[8], col2, row4);
   pg1.text(words[9], col5, row4);
   pg1.pop();
 
 }
+
+class TextLink {
+  constructor(message, x, y, url) {
+    this.message = message;
+    this.x = x;
+    this.y = y;
+    this.url = url;
+  }
+
+  display() {
+    if (this.isMouseInside()) {
+      noStroke();
+      cursor(HAND);
+      fill(tertiary);
+    } else {
+      noStroke();
+      cursor(ARROW);
+      fill(primary);
+    }
+  
+  textFont(HelTxtMed);
+  textSize(18);
+//  textAlign(LEFT, TOP);
+  noStroke();
+    text(this.message, this.x, this.y);
+  }
+
+  clicked() {
+    if (this.isMouseInside()) {
+      window.open(this.url, '_blank');
+    }
+  }
+
+  isMouseInside() {
+    const messageWidth = textWidth(this.message);
+    const messageTop = this.y - textAscent();
+    const messageBottom = this.y + textDescent();
+
+    return mouseX > this.x && mouseX < this.x + messageWidth &&
+      mouseY > messageTop && mouseY < messageBottom;
+  }
+}
+
