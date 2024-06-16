@@ -216,21 +216,18 @@ function draw() {
 }
 
 function generatePrompt() {
-  // Set different seeds for each random selection
-  randomSeed(100);
-  let adjective = random(adjectives);
+  // Generate random values with different seeds using pseudo-randomness
+  let adjectiveIndex = Math.floor(Math.random() * adjectives.length);
+  let colourIndex = Math.floor(Math.random() * colours.length);
+  let nounIndex = Math.floor(Math.random() * nouns.length);
+  let verbIndex = Math.floor(Math.random() * verbs.length);
+  let locationIndex = Math.floor(Math.random() * locations.length);
 
-  randomSeed(200);
-  let colourObj = random(colours); // Select a color object
-
-  randomSeed(300);
-  let noun = random(nouns);
-
-  randomSeed(400);
-  let verb = random(verbs);
-
-  randomSeed(500);
-  let location = random(locations);
+  let adjective = adjectives[adjectiveIndex];
+  let colourObj = colours[colourIndex];
+  let noun = nouns[nounIndex];
+  let verb = verbs[verbIndex];
+  let location = locations[locationIndex];
 
   lineOne = `${adjective}`;
   lineTwo = `${colourObj.name} Robot`;
