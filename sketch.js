@@ -216,11 +216,20 @@ function draw() {
 }
 
 function generatePrompt() {
-  // Randomly select from each array
+  // Set different seeds for each random selection
+  randomSeed(100);
   let adjective = random(adjectives);
+
+  randomSeed(200);
   let colourObj = random(colours); // Select a color object
+
+  randomSeed(300);
   let noun = random(nouns);
+
+  randomSeed(400);
   let verb = random(verbs);
+
+  randomSeed(500);
   let location = random(locations);
 
   lineOne = `${adjective}`;
